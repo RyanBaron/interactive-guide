@@ -1,0 +1,13 @@
+{
+  "name": "madtown",
+  "homepage": "https://madtownagency.com",
+  "authors": [
+    "Ryan Baron <ryan@madtownagency.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "git://github.com/twbs/bootstrap.git#v4.0.0-alpha.4",
+    "components-font-awesome": "^4.6.3"
+  }
+}
