@@ -233,8 +233,8 @@ gulp.task('index', function() {
   var assets = JSON.parse(fs.readFileSync(path.dist + 'assets.json'));
   gulp.src('src/index.html')
     .pipe(htmlReplace({
-      'css': assets['main.css'],
-      'js': [ assets['jquery.js'],assets['main.js'] ]
+      'css' : 'styles/' + assets['main.css'],
+      'js'  : [ 'scripts/' + assets['jquery.js'] , 'scripts/' + assets['main.js'] ]
   }))
   .pipe(gulp.dest('dist/'));
   /*
@@ -273,6 +273,19 @@ gulp.task('styles', ['wiredep'], function() {
 });
 
 
+// ### Watch
+// `gulp watch` - Use BrowserSync to proxy your dev server and synchronize code
+// changes across devices. Specify the hostname of your dev server at
+// `manifest.config.devUrl`. When a modification is made to an asset, run the
+// build step for that asset and inject the changes into the page.
+// See: http://www.browsersync.io
+gulp.task('watch', function() {
+  gulp.watch([path.source + 'styles/**/*'], ['styles']);
+  gulp.watch([path.source + 'scripts/**/*'], ['jshint', 'scripts']);
+  gulp.watch([path.source + 'fonts/**/*'], ['fonts']);
+  gulp.watch([path.source + 'images/**/*'], ['images']);
+  gulp.watch(['bower.json', 'src/assets/manifest.json'], ['build']);
+});
 
 // ### Build
 // `gulp build` - Run all the build tasks but don't clean up beforehand.
